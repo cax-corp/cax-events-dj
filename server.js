@@ -12,8 +12,8 @@ const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK;
 
 // Middleware
 app.use(cors({
-    origin: ['https://events.cax-corp.com', 'http://localhost:3000', 'http://localhost:5500'],
-    credentials: true,
+    origin: '*',
+    credentials: false,
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
