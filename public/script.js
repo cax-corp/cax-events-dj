@@ -96,7 +96,7 @@ bookingForm.addEventListener('submit', async (e) => {
 
     try {
         // Send data to backend
-        const response = await fetch('/api/bookings', {
+        const response = await fetch('https://cax-events-dj-api.onrender.com/api/bookings', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

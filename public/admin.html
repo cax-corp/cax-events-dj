@@ -434,7 +434,7 @@
         // Load reservations
         async function loadReservations() {
             try {
-                const response = await fetch('/api/reservations');
+                const response = await fetch('https://cax-events-dj-api.onrender.com/api/reservations');
                 const data = await response.json();
                 const reservations = data.reservations || [];
                 displayReservations(reservations);
@@ -533,7 +533,7 @@
 
         async function updateStatus(id, status) {
             try {
-                const response = await fetch(`/api/bookings/${id}`, {
+                const response = await fetch(`https://cax-events-dj-api.onrender.com/api/bookings/${id}`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ status })
@@ -550,7 +550,7 @@
         async function deleteReservation(id) {
             if (confirm('Are you sure you want to delete this reservation?')) {
                 try {
-                    const response = await fetch(`/api/bookings/${id}`, {
+                    const response = await fetch(`https://cax-events-dj-api.onrender.com/api/bookings/${id}`, {
                         method: 'DELETE'
                     });
 
@@ -564,7 +564,7 @@
         }
 
         function exportCSV() {
-            fetch('/api/reservations')
+            fetch('https://cax-events-dj-api.onrender.com/api/reservations')
                 .then(r => r.json())
                 .then(data => {
                     const reservations = data.reservations || [];
@@ -610,7 +610,7 @@
         // Search filter
         document.getElementById('searchInput')?.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
-            fetch('/api/reservations')
+            fetch('https://cax-events-dj-api.onrender.com/api/reservations')
                 .then(r => r.json())
                 .then(data => {
                     const filtered = (data.reservations || []).filter(r =>
