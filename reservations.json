@@ -1,0 +1,53 @@
+{
+  "reservations": [
+    {
+      "firstName": "Thomas",
+      "lastName": "BARIAL",
+      "email": "thombarial@gmail.com",
+      "phone": "0633142431",
+      "eventType": "marriage",
+      "eventDate": "2028-01-01",
+      "eventTime": "15:00",
+      "eventDuration": "24",
+      "location": "Chez marco paulo",
+      "guestCount": "250",
+      "musicGenre": "Tous",
+      "services": [
+        "karaoke",
+        "lights",
+        "animation",
+        "equipment"
+      ],
+      "budget": "200",
+      "message": "This is a test.",
+      "submittedAt": "2026-02-17T20:42:21.375Z",
+      "id": "1771360941391",
+      "status": "confirmed",
+      "updatedAt": "2026-02-17T22:17:54.163Z"
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test@test.com",
+      "phone": "812378273823",
+      "eventType": "other",
+      "eventDate": "2026-12-08",
+      "eventTime": "08:38",
+      "eventDuration": "72",
+      "location": "HDJhdzdhzjldziu__jhohiojzopjdopaq,d",
+      "guestCount": "34567890",
+      "musicGenre": "zdzdzdzdzd",
+      "services": [
+        "karaoke",
+        "lights",
+        "animation",
+        "equipment"
+      ],
+      "budget": "8721873",
+      "message": "skdfkjdks",
+      "submittedAt": "2026-02-17T22:37:03.354Z",
+      "id": "1771367823354",
+      "status": "pending"
+    }
+  ]
+}

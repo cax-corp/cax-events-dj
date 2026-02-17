@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 CAX Events, Inc.</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .admin-navbar {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .admin-navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-navbar-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+
+        .admin-nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .admin-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .admin-header h2 {
+            font-size: 28px;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .admin-header p {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 4px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .search-export {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-alt);
+            color: var(--text);
+            border-radius: 3px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn-export {
+            background: var(--accent);
+            color: var(--bg);
+            border: 1px solid var(--accent);
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-export:hover {
+            background-color: rgba(26, 26, 26, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .reservations-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .reservation-card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            padding: 25px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .reservation-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .reservation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .reservation-title h3 {
+            font-size: 16px;
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .reservation-date {
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .reservation-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-action:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-confirm {
+            background: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        .btn-confirm:hover {
+            background: #c3e6cb;
+        }
+
+        .btn-reject {
+            background: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+
+        .btn-reject:hover {
+            background: #f5c6cb;
+        }
+
+        .btn-delete {
+            background: #f8f9fa;
+            color: #721c24;
+            border-color: #dee2e6;
+        }
+
+        .btn-delete:hover {
+            background: #dee2e6;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+
+        .no-data p {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .admin-navbar {
+                padding: 15px 20px;
+            }
+
+            .admin-container {
+                padding: 20px;
+            }
+
+            .admin-header h2 {
+                font-size: 24px;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .search-export {
+                flex-direction: column;
+            }
+
+            .reservation-header {
+                flex-direction: column;
+            }
+
+            .reservation-details {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn-action {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="admin-navbar">
+        <div class="admin-navbar-content">
+            <div class="admin-navbar-title">CAX Events, Inc. / Admin</div>
+            <div class="admin-nav-buttons">
+                <button class="theme-toggle" id="themeToggle" title="Mode sombre">🌙</button>
+                <button class="btn-logout" id="btnAuthToggle" onclick="toggleAdminAuth()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-container">
+        <div class="admin-header">
+            <h2>Booking Management</h2>
+            <p>View and manage DJ booking requests</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-label">Total</div>
+                <div class="stat-number" id="totalCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Pending</div>
+                <div class="stat-number" id="pendingCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Confirmed</div>
+                <div class="stat-number" id="confirmedCount">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Rejected</div>
+                <div class="stat-number" id="rejectedCount">0</div>
+            </div>
+        </div>
+
+        <!-- Search & Export -->
+        <div class="search-export">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search by name, email or phone...">
+            </div>
+            <button class="btn-export" onclick="exportCSV()">Export CSV</button>
+        </div>
+
+        <!-- Reservations -->
+        <div id="reservationsContainer" class="reservations-grid">
+            <div class="no-data">
+                <p>Loading reservations...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Check admin auth
+        function checkAdminAuth() {
+            const user = localStorage.getItem('user');
+            if (!user) {
+                window.location.href = '/login.html';
+                return;
+            }
+            
+            const userData = JSON.parse(user);
+            if (userData.role !== 'admin') {
+                window.location.href = '/index.html';
+            }
+        }
+
+        // Toggle authentication (logout)
+        function toggleAdminAuth() {
+            localStorage.removeItem('user');
+            localStorage.removeItem('theme');
+            window.location.href = '/login.html';
+        }
+
+        checkAdminAuth();
+
+        // Dark Mode
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // Load reservations
+        async function loadReservations() {
+            try {
+                const response = await fetch('/api/reservations');
+                const data = await response.json();
+                const reservations = data.reservations || [];
+                displayReservations(reservations);
+                updateStats(reservations);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function displayReservations(reservations) {
+            const container = document.getElementById('reservationsContainer');
+
+            if (reservations.length === 0) {
+                container.innerHTML = '<div class="no-data"><p>No bookings available at the moment</p></div>';
+                return;
+            }
+
+            container.innerHTML = reservations.map(r => `
+                <div class="reservation-card">
+                    <div class="reservation-header">
+                        <div class="reservation-title">
+                            <h3>${r.firstName} ${r.lastName}</h3>
+                            <div class="reservation-date">${new Date(r.submittedAt).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                        </div>
+                        <span class="status-badge status-${r.status || 'pending'}">${r.status || 'Pending'}</span>
+                    </div>
+                    
+                    <div class="reservation-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Email</div>
+                            ${r.email}
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Phone</div>
+                            ${r.phone}
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Event Type</div>
+                            ${r.eventType}
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Date & Time</div>
+                            ${r.eventDate} at ${r.eventTime}
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Duration</div>
+                            ${r.eventDuration}h
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Location</div>
+                            ${r.location}
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Guests</div>
+                            ${r.guestCount}
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Musical genres</div>
+                            ${r.musicGenre}
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Budget</div>
+                            €${r.budget}
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Services</div>
+                            ${r.services?.length > 0 ? r.services.join(', ') : 'None'}
+                        </div>
+                    </div>
+
+                    ${r.message ? `<div class="detail-item" style="margin-bottom: 15px;">
+                        <div class="detail-label">Message</div>
+                        <p style="color: var(--text); font-size: 14px; font-style: italic; margin: 5px 0;">"${r.message}"</p>
+                    </div>` : ''}
+
+                    <div class="action-buttons">
+                        <button class="btn-action btn-confirm" onclick="updateStatus('${r.id}', 'confirmed')">✓ Confirm</button>
+                        <button class="btn-action btn-reject" onclick="updateStatus('${r.id}', 'rejected')">✕ Reject</button>
+                        <button class="btn-action btn-delete" onclick="deleteReservation('${r.id}')">🗑 Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats(reservations) {
+            const total = reservations.length;
+            const pending = reservations.filter(r => (r.status || 'pending') === 'pending').length;
+            const confirmed = reservations.filter(r => r.status === 'confirmed').length;
+            const rejected = reservations.filter(r => r.status === 'rejected').length;
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('confirmedCount').textContent = confirmed;
+            document.getElementById('rejectedCount').textContent = rejected;
+        }
+
+        async function updateStatus(id, status) {
+            try {
+                const response = await fetch(`/api/bookings/${id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+
+                if (response.ok) {
+                    loadReservations();
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+
+        async function deleteReservation(id) {
+            if (confirm('Are you sure you want to delete this reservation?')) {
+                try {
+                    const response = await fetch(`/api/bookings/${id}`, {
+                        method: 'DELETE'
+                    });
+
+                    if (response.ok) {
+                        loadReservations();
+                    }
+                } catch (error) {
+                    console.error('Erreur:', error);
+                }
+            }
+        }
+
+        function exportCSV() {
+            fetch('/api/reservations')
+                .then(r => r.json())
+                .then(data => {
+                    const reservations = data.reservations || [];
+                    const csv = convertToCSV(reservations);
+                    downloadCSV(csv, 'reservations.csv');
+                });
+        }
+
+        function convertToCSV(data) {
+            const headers = ['ID', 'Prénom', 'Nom', 'Email', 'Téléphone', 'Type', 'Date', 'Heure', 'Durée', 'Lieu', 'Personnes', 'Genre', 'Budget', 'Statut', 'Soumis'];
+            const rows = data.map(r => [
+                r.id,
+                r.firstName,
+                r.lastName,
+                r.email,
+                r.phone,
+                r.eventType,
+                r.eventDate,
+                r.eventTime,
+                r.eventDuration,
+                r.location,
+                r.guestCount,
+                r.musicGenre,
+                r.budget,
+                r.status || 'pending',
+                new Date(r.submittedAt).toLocaleDateString('fr-FR')
+            ]);
+
+            return [headers, ...rows]
+                .map(row => row.map(cell => `"${cell}"`).join(','))
+                .join('\n');
+        }
+
+        function downloadCSV(csv, filename) {
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+        }
+
+        // Search filter
+        document.getElementById('searchInput')?.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            fetch('/api/reservations')
+                .then(r => r.json())
+                .then(data => {
+                    const filtered = (data.reservations || []).filter(r =>
+                        r.firstName.toLowerCase().includes(searchTerm) ||
+                        r.lastName.toLowerCase().includes(searchTerm) ||
+                        r.email.toLowerCase().includes(searchTerm) ||
+                        r.phone.toLowerCase().includes(searchTerm)
+                    );
+                    displayReservations(filtered);
+                });
+        });
+
+        loadReservations();
+        setInterval(loadReservations, 15000);
+    </script>
+</body>
+</html>

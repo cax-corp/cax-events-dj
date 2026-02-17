@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAX Events, Inc.</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">CAX Events, Inc.</div>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <button class="btn-admin hidden" id="btnAdmin" onclick="window.location.href='/admin.html'">👨‍💼 Admin</button>
+                <button class="theme-toggle" id="themeToggle" title="Mode sombre">🌙</button>
+                <button class="btn-logout" id="btnAuthToggle" onclick="toggleAuth()">Connexion</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Réservez votre DJ</h1>
+            <p>Trouvez le DJ parfait pour votre événement</p>
+        </section>
+
+        <!-- Booking Form -->
+        <section class="booking-section">
+            <div class="form-wrapper">
+                <h2>Formulaire de Réservation</h2>
+                <form id="bookingForm" class="booking-form">
+                    <!-- Client Info -->
+                    <fieldset class="form-group">
+                        <legend>Informations Client</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="firstName">Prénom *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="lastName">Nom *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="phone">Téléphone *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </fieldset>
+
+                    <!-- Event Info -->
+                    <fieldset class="form-group">
+                        <legend>Informations de l'Événement</legend>
+
+                        <div class="form-field">
+                            <label for="eventType">Type d'événement *</label>
+                            <select id="eventType" name="eventType" required>
+                                <option value="">-- Sélectionnez --</option>
+                                <option value="marriage">Mariage</option>
+                                <option value="birthday">Anniversaire</option>
+                                <option value="corporate">Événement Corporatif</option>
+                                <option value="club">Club/Bar</option>
+                                <option value="festival">Festival</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="eventDate">Date *</label>
+                                <input type="date" id="eventDate" name="eventDate" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="eventTime">Heure *</label>
+                                <input type="time" id="eventTime" name="eventTime" required>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="eventDuration">Durée (heures) *</label>
+                            <input type="number" id="eventDuration" name="eventDuration" min="1" max="72" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="location">Lieu *</label>
+                            <input type="text" id="location" name="location" placeholder="Adresse complète" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="guestCount">Nombre de personnes *</label>
+                            <input type="number" id="guestCount" name="guestCount" min="1" required>
+                        </div>
+                    </fieldset>
+
+                    <!-- Music & Services -->
+                    <fieldset class="form-group">
+                        <legend>Musique & Services</legend>
+
+                        <div class="form-field">
+                            <label for="musicGenre">Genre(s) musical préféré(s) *</label>
+                            <input type="text" id="musicGenre" name="musicGenre" placeholder="Ex: Electronic, Hip-Hop, Disco" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label>Services additionnels</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="services" value="karaoke"> Karaoké
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="services" value="lights"> Éclairage
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="services" value="animation"> Animation
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="services" value="equipment"> Équipement Audio
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Additional Info -->
+                    <fieldset class="form-group">
+                        <legend>Informations Supplémentaires</legend>
+
+                        <div class="form-field">
+                            <label for="budget">Budget estimé (€) *</label>
+                            <input type="number" id="budget" name="budget" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="message">Message ou demandes spéciales</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Dites-nous vos attentes..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Submit -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">Envoyer ma Réservation</button>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="success-message hidden">
+                    <div class="success-content">
+                        <h3>Merci pour votre réservation!</h3>
+                        <p>Votre demande a été reçue. Nous vous contacterons sous peu pour confirmer les détails.</p>
+                        <button class="btn-reset" id="resetForm">Nouvelle Réservation</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 DJ Booking. Tous droits réservés.</p>
+        <p style="font-size: 11px; margin-top: 5px; opacity: 0.6;"><a href="/login.html" style="color: inherit; text-decoration: none;">Admin</a></p>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
