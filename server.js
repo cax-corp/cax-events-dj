@@ -286,8 +286,8 @@ app.get('/booking', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Serve static files (CSS, JS, images, etc.)
-app.use(express.static('public'));
+// Serve static files (CSS, JS, images, etc.) - but NOT index.html
+app.use(express.static('public', { index: false }));
 
 // Fallback pour autres pages statiques
 app.get('*', (req, res) => {
