@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAX Events - Services DJ Premium</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Landing Page Specific Styles */
+        .landing-nav {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .landing-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .landing-logo {
+            color: var(--accent);
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            cursor: pointer;
+        }
+
+        .landing-nav-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .btn-cta {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            background: var(--text);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 100%);
+        }
+
+        .hero-section h1 {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .hero-section .subtitle {
+            font-size: 24px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover {
+            background: var(--text-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 14px 38px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--bg);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            background: var(--bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: -1px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-alt);
+            padding: 40px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            background: var(--bg-alt);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .pricing-card {
+            background: var(--bg);
+            border: 2px solid var(--border);
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg);
+            padding: 6px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        .pricing-description {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .pricing-period {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .pricing-features li:before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-button {
+            width: 100%;
+            background: var(--bg-alt);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        .pricing-card.featured .pricing-button {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .pricing-button:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Services Section */
+        .services-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            background: var(--bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            padding: 30px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .service-item h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .service-item p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            background: var(--bg-alt);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--bg);
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .testimonial-title {
+            color: var(--text-light);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 40px;
+            background: var(--bg);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .landing-footer {
+            background: var(--text);
+            color: var(--bg);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .landing-footer p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        /* Dark Mode Adjustments */
+        body.dark-mode .pricing-card.featured {
+            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .feature-card:hover {
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .landing-footer {
+            background: var(--bg-alt);
+            color: var(--text);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 20px;
+            }
+
+            .hero-section h1 {
+                font-size: 42px;
+            }
+
+            .hero-section .subtitle {
+                font-size: 18px;
+            }
+
+            .hero-cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .features-grid, .pricing-grid, .services-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: translateY(-5px);
+            }
+
+            .landing-nav-container {
+                padding: 15px 20px;
+            }
+
+            .landing-nav-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+
+            .btn-cta, .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <div class="landing-nav-container">
+            <div class="landing-logo" onclick="window.location.href='/'">CAX Events, Inc.</div>
+            <div class="landing-nav-buttons">
+                <button class="btn-cta" onclick="scrollToSection('pricing')">Tarifs</button>
+                <button class="btn-cta" onclick="window.location.href='/booking'">Réserver</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Transformez vos événements</h1>
+        <p class="subtitle">Avec les meilleurs DJ professionnels disponibles</p>
+        <div class="hero-cta-buttons">
+            <button class="btn-primary" onclick="window.location.href='/booking'">Réservez maintenant</button>
+            <button class="btn-secondary" onclick="scrollToSection('services')">Découvrir nos services</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">Pourquoi nous choisir ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎧</div>
+                <h3>DJ Professionnels</h3>
+                <p>Équipe d'artistes expérimentés avec plus de 10 ans dans l'industrie événementielle</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎵</div>
+                <h3>Répertoire Varié</h3>
+                <p>Musique adaptée à votre événement : mariage, anniversaire, soirée étudiante, corporate</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎚️</div>
+                <h3>Équipement Premium</h3>
+                <p>Matériel audiovisuel haute qualité pour une expérience sonore incomparable</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Disponibilité Flexible</h3>
+                <p>Calendrier ouvert pour vos dates importantes toute l'année</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Personnalisation</h3>
+                <p>Consultation personnalisée pour adapter la musique à vos souhaits</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Satisfaction Garantie</h3>
+                <p>Taux de satisfaction client de 98% et avis positifs vérifiés</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <h2 class="section-title">Nos Services</h2>
+        <div class="services-grid">
+            <div class="service-item">
+                <h4>🎂 Mariages & Événements Importants</h4>
+                <p>Animation musicale complète de votre journée spéciale avec ambiance personnalisée</p>
+            </div>
+            <div class="service-item">
+                <h4>🎉 Fêtes & Anniversaires</h4>
+                <p>Animations dynamiques et engagées pour créer une atmosphère festive inoubliable</p>
+            </div>
+            <div class="service-item">
+                <h4>🎓 Événements Étudiants</h4>
+                <p>Soirées étudiantes, après-examen, avec les derniers hits et musique tendance</p>
+            </div>
+            <div class="service-item">
+                <h4>💼 Événements Corporatifs</h4>
+                <p>Animation d'événements d'entreprise avec professionnalisme et élégance</p>
+            </div>
+            <div class="service-item">
+                <h4>🍾 Soirées VIP & Cocktails</h4>
+                <p>Ambiance lounge et DJ set sophistiqué pour vos événements élégants</p>
+            </div>
+            <div class="service-item">
+                <h4>🎤 Animation Complète</h4>
+                <p>Avec animateur, karaoké, et effects visuels sur demande</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <h2 class="section-title">Nos Tarifs</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <p class="pricing-description">Parfait pour les petits événements</p>
+                <div class="pricing-price">299€</div>
+                <div class="pricing-period">Par événement</div>
+                <ul class="pricing-features">
+                    <li>2 heures d'animation</li>
+                    <li>DJ professionnel</li>
+                    <li>Musique personnalisée</li>
+                    <li>Matériel basique</li>
+                    <li>Support avant événement</li>
+                </ul>
+                <button class="pricing-button" onclick="window.location.href='/booking'">Réserver</button>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge">🌟 Populaire</div>
+                <h3>Pro</h3>
+                <p class="pricing-description">Recommandé pour la plupart des événements</p>
+                <div class="pricing-price">599€</div>
+                <div class="pricing-period">Par événement</div>
+                <ul class="pricing-features">
+                    <li>4 heures d'animation</li>
+                    <li>DJ expérimenté</li>
+                    <li>Musique entièrement adaptée</li>
+                    <li>Équipement premium</li>
+                    <li>Consultation personnalisée</li>
+                    <li>Piste de danse incluse</li>
+                    <li>Support prioritaire</li>
+                </ul>
+                <button class="pricing-button" onclick="window.location.href='/booking'">Réserver</button>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Premium</h3>
+                <p class="pricing-description">Pour les événements exceptionnels</p>
+                <div class="pricing-price">999€</div>
+                <div class="pricing-period">Par événement</div>
+                <ul class="pricing-features">
+                    <li>6 à 8 heures d'animation</li>
+                    <li>DJ réputé de premier plan</li>
+                    <li>Sound system professionnel</li>
+                    <li>Animations visuelles (LED, laser)</li>
+                    <li>Animateur de soirée</li>
+                    <li>Consultation avancée</li>
+                    <li>Support VIP 24/7</li>
+                </ul>
+                <button class="pricing-button" onclick="window.location.href='/booking'">Réserver</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <h2 class="section-title">Avis Clients</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Excellent DJ ! L'ambiance était parfaite pour notre mariage. Nos invités n'ont pas changé la piste de danse une seconde. Très professionnel, je recommande vivement !"</p>
+                <p class="testimonial-author">Marie & Jean Dupont</p>
+                <p class="testimonial-title">Mariage juin 2025</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Merci pour cette soirée d'anniversaire inoubliable ! Le DJ a su créer une ambiance chaleureuse et dynamique. Les remerciements de tous mes amis !"</p>
+                <p class="testimonial-author">Sophie Martin</p>
+                <p class="testimonial-title">Anniversaire février 2026</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"CAX Events a assuré notre événement corporatif avec élégance et professionnalisme. L'équipe était réactive, respectueuse et discrète. Merci !"</p>
+                <p class="testimonial-author">Cabinet Juridique Lemoine</p>
+                <p class="testimonial-title">Événement corporate janvier 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Prêt à créer de bons souvenirs ?</h2>
+        <p>Réservez dès maintenant avec notre formule garantie sans risque. Notre équipe vous accompagne à chaque étape.</p>
+        <button class="btn-primary" onclick="window.location.href='/booking'" style="margin: 0 auto; display: inline-block;">Commencer une réservation</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <p><strong>CAX Events, Inc.</strong></p>
+        <p>Services DJ Premium pour vos événements</p>
+        <p style="margin-top: 20px; color: var(--text-lighter); font-size: 12px;">© 2026 CAX Events. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Dark Mode Toggle
+        const themeToggle = document.querySelector('.btn-secondary') || document.body;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Since there's no theme toggle on this page, add one
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'd' && e.ctrlKey) {
+                document.body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+            }
+        });
+    </script>
+</body>
+</html>
