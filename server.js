@@ -18,7 +18,6 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
-app.use(express.static('public'));
 
 // Initialize reservations file if it doesn't exist
 function initReservationsFile() {
@@ -286,6 +285,9 @@ app.get('/', (req, res) => {
 app.get('/booking', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+// Serve static files (CSS, JS, images, etc.)
+app.use(express.static('public'));
 
 // Fallback pour autres pages statiques
 app.get('*', (req, res) => {
