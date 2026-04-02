@@ -47,7 +47,8 @@ export default {
             if (pathname === '/' || pathname === '') {
                 const html = await env.BUCKET.get('landing.html');
                 if (html) {
-                    return new Response(html, { 
+                    const content = await html.text();
+                    return new Response(content, { 
                         headers: { ...corsHeaders, 'Content-Type': 'text/html' } 
                     });
                 }
@@ -56,7 +57,8 @@ export default {
             if (pathname === '/booking') {
                 const html = await env.BUCKET.get('index.html');
                 if (html) {
-                    return new Response(html, { 
+                    const content = await html.text();
+                    return new Response(content, { 
                         headers: { ...corsHeaders, 'Content-Type': 'text/html' } 
                     });
                 }
@@ -65,7 +67,8 @@ export default {
             if (pathname === '/admin.html') {
                 const html = await env.BUCKET.get('admin.html');
                 if (html) {
-                    return new Response(html, { 
+                    const content = await html.text();
+                    return new Response(content, { 
                         headers: { ...corsHeaders, 'Content-Type': 'text/html' } 
                     });
                 }
@@ -74,7 +77,8 @@ export default {
             if (pathname === '/login.html') {
                 const html = await env.BUCKET.get('login.html');
                 if (html) {
-                    return new Response(html, { 
+                    const content = await html.text();
+                    return new Response(content, { 
                         headers: { ...corsHeaders, 'Content-Type': 'text/html' } 
                     });
                 }
@@ -86,7 +90,8 @@ export default {
                 const file = await env.BUCKET.get(filename);
                 if (file) {
                     const contentType = getContentType(filename);
-                    return new Response(file, { 
+                    const content = await file.arrayBuffer();
+                    return new Response(content, { 
                         headers: { ...corsHeaders, 'Content-Type': contentType } 
                     });
                 }
