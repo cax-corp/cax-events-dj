@@ -183,127 +183,6 @@
             line-height: 1.8;
         }
 
-        /* Pricing Section */
-        .pricing-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 100px 40px;
-            background: var(--bg-alt);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .pricing-card {
-            background: var(--bg);
-            border: 2px solid var(--border);
-            padding: 40px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-            transform: translateY(-10px);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--bg);
-            padding: 6px 20px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .pricing-card h3 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            margin-top: 10px;
-        }
-
-        .pricing-description {
-            color: var(--text-light);
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        .pricing-price {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
-
-        .pricing-period {
-            color: var(--text-light);
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-light);
-            font-size: 14px;
-        }
-
-        .pricing-features li:before {
-            content: "✓ ";
-            color: var(--accent);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-button {
-            width: 100%;
-            background: var(--bg-alt);
-            color: var(--text);
-            border: 1px solid var(--border);
-            padding: 14px 20px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-top: 20px;
-        }
-
-        .pricing-card.featured .pricing-button {
-            background: var(--accent);
-            color: var(--bg);
-            border-color: var(--accent);
-        }
-
-        .pricing-button:hover {
-            background: var(--accent);
-            color: var(--bg);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
         /* Services Section */
         .services-section {
             max-width: 1400px;
@@ -424,10 +303,6 @@
         }
 
         /* Dark Mode Adjustments */
-        body.dark-mode .pricing-card.featured {
-            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.1);
-        }
-
         body.dark-mode .feature-card:hover {
             box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
         }
@@ -494,7 +369,6 @@
         <div class="landing-nav-container">
             <div class="landing-logo" onclick="window.location.href='/'">CAX Events, Inc.</div>
             <div class="landing-nav-buttons">
-                <button class="btn-cta" onclick="scrollToSection('pricing')">Tarifs</button>
                 <button class="btn-cta" onclick="window.location.href='/booking'">Réserver</button>
             </div>
         </div>
@@ -574,62 +448,6 @@
             <div class="service-item">
                 <h4>🎤 Animation Complète</h4>
                 <p>Avec animateur, karaoké, et effects visuels sur demande</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing-section" id="pricing">
-        <h2 class="section-title">Nos Tarifs</h2>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Starter</h3>
-                <p class="pricing-description">Parfait pour les petits événements</p>
-                <div class="pricing-price">299€</div>
-                <div class="pricing-period">Par événement</div>
-                <ul class="pricing-features">
-                    <li>2 heures d'animation</li>
-                    <li>DJ professionnel</li>
-                    <li>Musique personnalisée</li>
-                    <li>Matériel basique</li>
-                    <li>Support avant événement</li>
-                </ul>
-                <button class="pricing-button" onclick="window.location.href='/booking'">Réserver</button>
-            </div>
-
-            <div class="pricing-card featured">
-                <div class="pricing-badge">🌟 Populaire</div>
-                <h3>Pro</h3>
-                <p class="pricing-description">Recommandé pour la plupart des événements</p>
-                <div class="pricing-price">599€</div>
-                <div class="pricing-period">Par événement</div>
-                <ul class="pricing-features">
-                    <li>4 heures d'animation</li>
-                    <li>DJ expérimenté</li>
-                    <li>Musique entièrement adaptée</li>
-                    <li>Équipement premium</li>
-                    <li>Consultation personnalisée</li>
-                    <li>Piste de danse incluse</li>
-                    <li>Support prioritaire</li>
-                </ul>
-                <button class="pricing-button" onclick="window.location.href='/booking'">Réserver</button>
-            </div>
-
-            <div class="pricing-card">
-                <h3>Premium</h3>
-                <p class="pricing-description">Pour les événements exceptionnels</p>
-                <div class="pricing-price">999€</div>
-                <div class="pricing-period">Par événement</div>
-                <ul class="pricing-features">
-                    <li>6 à 8 heures d'animation</li>
-                    <li>DJ réputé de premier plan</li>
-                    <li>Sound system professionnel</li>
-                    <li>Animations visuelles (LED, laser)</li>
-                    <li>Animateur de soirée</li>
-                    <li>Consultation avancée</li>
-                    <li>Support VIP 24/7</li>
-                </ul>
-                <button class="pricing-button" onclick="window.location.href='/booking'">Réserver</button>
             </div>
         </div>
     </section>
